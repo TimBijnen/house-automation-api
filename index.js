@@ -7,7 +7,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 
 const GPIO = require('onoff').Gpio
-const VALVE = new GPIO(27, 'out');
+const VALVE = new GPIO(17, 'out');
 
 app.get('/start', (req, res) => {
     VALVE.writeSync(1);
