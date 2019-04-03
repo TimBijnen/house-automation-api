@@ -10,11 +10,11 @@ const GPIO = require('onoff').Gpio
 const VALVE = new GPIO(27, 'out');
 
 app.get('/start', (req, res) => {
-    VALUE.writeSync(1);
+    VALVE.writeSync(1);
     res.send("Started watering")
 })
 app.get("/stop", (req, res) => {
-    VALUE.writeSync(0);
+    VALVE.writeSync(0);
     res.send("Stopped watering");
 })
 
