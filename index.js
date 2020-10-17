@@ -2,6 +2,13 @@ const express = require("express")
 const app = express()
 const port = 3001
 const Pin = require("./models/pin");
+const bodyParser = require("body-parser");
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 app.get('/', (req, res) => res.send('Hello World!'))
 
 
@@ -31,6 +38,20 @@ app.get("/lighting", (req, res) => {
     } )
 });
 app.post("/lighting", (req, res) => {
+    const {
+        gardenLightsBack,
+        gardenLightsFront,
+    } = req.body;
+
+    valves.gardenLightsBack.setActive( gardenLightsBack );
+    valves.gardenLightsFront.setActive( gardenLightsFront );
+
+    console.log(req.body)
+    // console.log(gardenLightsBack,valves.gardenLightsBack)
+    res.send( {
+        gardenLightsBack: valves.gardenLightsBack.getActive(),
+        gardenLightsFront: valves.gardenLightsFront.getActive(),
+    } )
     // set new lighting setting
 	// {
 	//     gardenBack: int,

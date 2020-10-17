@@ -1,7 +1,7 @@
 const GPIO = require('onoff').Gpio
 
 class Pin {
-    activated = false;
+    active = false;
 
     constructor(number, direction) {
         try {
@@ -11,14 +11,13 @@ class Pin {
         }
     }
 
-    activate() {
-        this.gpio && this.gpio.writeSync(1);
-        this.activated = true;
+    setActive( active ) {
+        this.gpio && this.gpio.writeSync( active ? 1 : 0 );
+        this.active = active;
     }
 
-    deactivate() {
-        this.gpio && this.gpio.writeSync(0);
-        this.activated = false;
+    getActive() {
+        return this.active;
     }
 }
   
