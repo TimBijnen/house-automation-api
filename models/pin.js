@@ -1,7 +1,7 @@
 const GPIO = require('onoff').Gpio
 
 class Pin {
-    active = false;
+//    active = false
 
     constructor(number, direction) {
         try {
@@ -9,6 +9,7 @@ class Pin {
         } catch (err) {
             this.gpio = false;
         }
+        this.active = false;
     }
 
     setActive( active ) {
