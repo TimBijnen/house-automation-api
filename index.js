@@ -19,13 +19,13 @@ valves.gardenWater = new Pin(19, 'out');
 let gardenLightsBack = false;
 let gardenLightsFront = false;
 
-app.get("/lighting", (req, res) => {
+app.get("/api/lighting", (req, res) => {
     res.send( {
         gardenLightsBack,
         gardenLightsFront,
     } );
 });
-app.post("/lighting", (req, res) => {
+app.post("/api/lighting", (req, res) => {
     const {
         gardenLightsBack: glb,
         gardenLightsFront: glf,
