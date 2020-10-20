@@ -31,9 +31,14 @@ app.post("/api/lighting", (req, res) => {
         gardenLightsFront: glf,
     } = req.body;
     
+    if (glb !== undefined) {
     gardenLightsBack = glb;
+}
+if (glf !== undefined) {
     gardenLightsFront = glf;
-
+}
+    valves.gardenLightsFront.setActive(glf);
+    valves.gardenLightsBack.setActive(glb);
     res.json( {
         gardenLightsBack,
         gardenLightsFront,
