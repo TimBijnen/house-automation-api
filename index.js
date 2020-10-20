@@ -13,8 +13,8 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 let valves = {};
 valves.gardenLightsBack = new Pin(17, 'out');
-valves.gardenLightsFront = new Pin(18, 'out');
-valves.gardenWater = new Pin(19, 'out');
+valves.gardenLightsFront = new Pin(27, 'out');
+valves.gardenWater = new Pin(22, 'out');
 
 let gardenLightsBack = false;
 let gardenLightsFront = false;
