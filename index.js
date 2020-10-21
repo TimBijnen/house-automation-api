@@ -37,8 +37,9 @@ app.post("/api/lighting", (req, res) => {
 if (glf !== undefined) {
     gardenLightsFront = glf;
 }
-    valves.gardenLightsFront.setActive(glf);
-    valves.gardenLightsBack.setActive(glb);
+// console.log(garde)
+    valves.gardenLightsFront.setActive(gardenLightsFront);
+    valves.gardenLightsBack.setActive(gardenLightsBack);
     res.json( {
         gardenLightsBack,
         gardenLightsFront,
