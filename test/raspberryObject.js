@@ -1,8 +1,16 @@
-var assert = require('assert');
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal([1, 2, 3].indexOf(4), -1);
+const assert = require('assert');
+const RaspberryPi = require("../models/RaspberryPi");
+const Pin = require("../models/Pin");
+const PinType = require("../enums/PinType");
+
+describe('RaspberryPi', function() {
+  const rpi = new RaspberryPi();
+
+  describe('Pins', function() {
+    it('can add a pin', function() {
+      const p = new Pin("gardenLightsFront", 27, PinType.OUT );
+      rpi.addPin(p);
+      assert.strictEqual(rpi.pins.length, 1);
     });
   });
 });

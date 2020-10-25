@@ -5,8 +5,8 @@ class RaspberryPi {
       this.pins = [];
    }
 
-   addPin(number, type) {
-      const pin = new Pin(number, type);
+   addPin(pin) {
+      // const pin = new Pin(number, type);
       this.pins = [...this.pins, pin];
    }
 }
