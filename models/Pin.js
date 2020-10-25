@@ -3,9 +3,9 @@ const GPIO = require('onoff').Gpio
 class Pin {
 //    active = false
 
-    constructor(number, direction) {
+    constructor(number, type) {
         try {
-            this.gpio = new GPIO(number, direction);
+            this.gpio = new GPIO(number, type);
         } catch (err) {
             this.gpio = false;
         }
