@@ -2,9 +2,10 @@
   "name": "house-automation",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "npx mocha"
   },
   "author": "",
