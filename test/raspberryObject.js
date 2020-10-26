@@ -1,6 +1,6 @@
 const assert = require('assert');
 const RaspberryPi = require("../src/models/RaspberryPi");
-const Pin = require("../src/models/Pin");
+// const Pin = require("../src/models/Pin");
 const PinType = require("../src/enums/PinType");
 
 describe('RaspberryPi', function() {
