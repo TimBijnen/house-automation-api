@@ -7,5 +7,6 @@ const config = { pins };
 const rpi = new RaspberryPi(config);
 rpi.activate();
 
-console.log(new Date(), "End activation script\n");
+console.log(new Date(), "End activation script");
+console.log("");
 process.exit(1);

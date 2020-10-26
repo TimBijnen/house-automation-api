@@ -7,5 +7,6 @@ const config = { pins };
 const rpi = new RaspberryPi(config);
 rpi.deactivate();
 
-console.log(new Date(), "End deactivation script\n");
+console.log(new Date(), "End deactivation script");
+console.log("");
 process.exit(1);
