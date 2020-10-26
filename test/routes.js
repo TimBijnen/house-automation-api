@@ -1,9 +1,10 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../src/app');
-// Configure chai
+
 chai.use(chaiHttp);
 chai.should();
+
 describe("rpi", () => {
     describe("GET /rpi", () => {
         it("should get rpi status", (done) => {

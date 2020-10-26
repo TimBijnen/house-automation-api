@@ -11,6 +11,15 @@ class Pin {
         }
     }
 
+    activate() {
+        this.gpio && this.gpio.writeSync( 1 );
+        console.log( `activating pin ${ this.number }: ${ this.name }`);
+    }
+
+    deactivate() {
+        this.gpio && this.gpio.writeSync( 0 );
+        console.log( `deactivating pin ${ this.number }: ${ this.name }`);
+    }
 }
   
 module.exports = Pin;
