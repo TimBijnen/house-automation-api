@@ -8,8 +8,8 @@ class RaspberryPi {
       this.pins = [];
 
       if ( config.pins.length > 0 ) {
-         config.pins.map( ( { name, number, type } ) => {
-            const pin = new Pin(name, number, type);
+         config.pins.map( ( { name, number, type, inverted } ) => {
+            const pin = new Pin(name, number, type, inverted);
             this.pins = [ ...this.pins, pin ]
          } );
       }
