@@ -15,29 +15,49 @@ class RaspberryPi {
       }
    }
 
+   findPin(n) {
+      return this.findPinByName( n ) || this.findPinByNumber( n );
+   }
+
+   findPinByName(n) {
+      return this.pins.find( ( { name } ) => name === n );
+   }
+
+   findPinByNumber(n) {
+      return this.pins.find( ( { number } ) => number === parseInt(n, 10));
+   }
+
    addPin(name, number, type) {
-      const pin = new Pin(name, number, type);
-      const hasPin = this.pins.filter( ( { name, number } ) =>
-         name === pin.name || number === pin.number
-      ).length !== 0;
-      if ( !hasPin ) {
-         this.pins = [...this.pins, pin];
+      const isAvailable = !this.findPin( name ) && !this.findPin( number );
+      if ( isAvailable ) {
+         const pin = new Pin(name, number, type);
+         this.pins = [ ...this.pins, pin ];
       }
    }
 
-   activate( name ) {
-      if ( name ) {
-         
+   activate( nameOrNumber ) {
+      if ( nameOrNumber ) {
+         const pin = this.findPin( nameOrNumber );
+         if ( pin ) {
+            pin.activate();
+            return pin.isActive;
+         } 
       } else {
          this.pins.map( pin => pin.activate() );
+         return this.pins.filter( ( { isActive } ) => isActive === false ).length === 0;
       }
    }
 
-   deactivate( name ) {
-      if ( name ) {
-
+   deactivate( nameOrNumber ) {
+      if ( nameOrNumber ) {
+         const pin = this.findPin( nameOrNumber );
+         if ( pin ) {
+            pin.deactivate();
+            return pin.isActive;
+         } 
       } else {
          this.pins.map( pin => pin.deactivate() );
+         return this.pins.filter( ( { isActive } ) => isActive === true ).length === 0;
       }
    }
 }
