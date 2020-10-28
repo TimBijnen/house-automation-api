@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
+    "start": "ORIGIN=https://www.bezigebijnen.nl node src/app.js",
+    "dev": "ORIGIN=http://localhost:3000 nodemon src/app.js",
     "test": "npx mocha --exit"
   },
   "author": "",
