@@ -1,3 +1,4 @@
+const { find } = require("../util/find");
 const Pin = require("./Pin");
 const CONFIG = {
    pins: [],
@@ -15,20 +16,8 @@ class RaspberryPi {
       }
    }
 
-   findPin(n) {
-      return this.findPinByName( n ) || this.findPinByNumber( n );
-   }
-
-   findPinByName(n) {
-      return this.pins.find( ( { name } ) => name === n );
-   }
-
-   findPinByNumber(n) {
-      return this.pins.find( ( { number } ) => number === parseInt(n, 10));
-   }
-
    addPin(name, number, type) {
-      const isAvailable = !this.findPin( name ) && !this.findPin( number );
+      const isAvailable = !find( this.pins, name ) && !find( this.pins, number );
       if ( isAvailable ) {
          const pin = new Pin(name, number, type);
          this.pins = [ ...this.pins, pin ];
@@ -37,7 +26,7 @@ class RaspberryPi {
 
    activate( nameOrNumber ) {
       if ( nameOrNumber ) {
-         const pin = this.findPin( nameOrNumber );
+         const pin = find( this.pins, nameOrNumber );
          if ( pin ) {
             pin.activate();
             return pin.isActive;
@@ -50,7 +39,7 @@ class RaspberryPi {
 
    deactivate( nameOrNumber ) {
       if ( nameOrNumber ) {
-         const pin = this.findPin( nameOrNumber );
+         const pin = find( this.pins, nameOrNumber );
          if ( pin ) {
             pin.deactivate();
             return pin.isActive;
