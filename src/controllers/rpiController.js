@@ -1,3 +1,7 @@
+const updateClient = (req) => {
+    req.app.locals.socket.emit("updatePins", req.app.locals.rpi);
+}
+
 class RpiController {
     static getStatus(req, res) {
         return res.status(200).json({
@@ -9,6 +13,9 @@ class RpiController {
         const { body } = req;
         const rpi = req.app.locals.rpi;
         body.isActive ? rpi.activate() : rpi.deactivate();
+        if ( req.body.notifyClients ) {
+            updateClient( req );
+        }
         return res.status(200).json({
             data: rpi,
             message: "set status of multiple pins",

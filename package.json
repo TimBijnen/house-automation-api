@@ -16,7 +16,9 @@
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "onoff": "^4.1.1"
+    "http": "0.0.1-security",
+    "onoff": "^4.1.1",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "mocha": "^8.2.0",
