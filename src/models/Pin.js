@@ -1,7 +1,7 @@
 const GPIO = require('onoff').Gpio
 
 class Pin {
-    constructor(name, number, type, inverted) {
+    constructor({ name, number, type, inverted }) {
         this.name = name;
         this.number = number;
         this.inverted = inverted;
@@ -13,16 +13,11 @@ class Pin {
         }
     }
 
-    activate() {
-        this.gpio && this.gpio.writeSync( this.inverted ? 0 : 1 );
+    activate( activate ) {
+        const value = activate && !this.inverted ? 1 : 0;
+        this.gpio && this.gpio.writeSync( value );
         console.log( `activating pin ${ this.number }: ${ this.name }`);
-        this.isActive = true;
-    }
-
-    deactivate() {
-        this.gpio && this.gpio.writeSync( this.inverted ? 1 : 0 );
-        console.log( `deactivating pin ${ this.number }: ${ this.name }`);
-        this.isActive = false;
+        this.isActive = activate;
     }
 }
   

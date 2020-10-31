@@ -9,8 +9,8 @@ class RaspberryPi {
       this.pins = [];
 
       if ( config.pins.length > 0 ) {
-         config.pins.map( ( { name, number, type, inverted } ) => {
-            const pin = new Pin(name, number, type, inverted);
+         config.pins.map( p => {
+            const pin = new Pin(p);
             this.pins = [ ...this.pins, pin ]
          } );
       }
@@ -24,29 +24,16 @@ class RaspberryPi {
       }
    }
 
-   activate( nameOrNumber ) {
-      if ( nameOrNumber ) {
+   activate( nameOrNumber, activate ) {
+      if ( nameOrNumber !== "ALL" ) {
          const pin = find( this.pins, nameOrNumber );
          if ( pin ) {
-            pin.activate();
+            pin.activate( activate );
             return pin.isActive;
          } 
       } else {
-         this.pins.map( pin => pin.activate() );
-         return this.pins.filter( ( { isActive } ) => isActive === false ).length === 0;
-      }
-   }
-
-   deactivate( nameOrNumber ) {
-      if ( nameOrNumber ) {
-         const pin = find( this.pins, nameOrNumber );
-         if ( pin ) {
-            pin.deactivate();
-            return pin.isActive;
-         } 
-      } else {
-         this.pins.map( pin => pin.deactivate() );
-         return this.pins.filter( ( { isActive } ) => isActive === true ).length === 0;
+         this.pins.map( pin => pin.activate( activate ) );
+         return this.pins.filter( ( { isActive } ) => isActive === !activate ).length === 0;
       }
    }
 }

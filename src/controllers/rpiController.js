@@ -12,7 +12,7 @@ class RpiController {
     static setStatus(req, res) {
         const { body } = req;
         const rpi = req.app.locals.rpi;
-        body.isActive ? rpi.activate() : rpi.deactivate();
+        rpi.activate( "ALL", body.isActive);
         if ( req.body.notifyClients ) {
             updateClient( req );
         }
@@ -34,8 +34,7 @@ class RpiController {
         const { id } = req.params;
         const { body } = req;
         const rpi = req.app.locals.rpi;
-        console.log(body.isActive, id)
-        const isActive = body.isActive ? rpi.activate(id) : rpi.deactivate(id);
+        rpi.activate(id, body.isActive);
         return res.status(200).json({
             data: { pins: rpi.pins },
             message: "Success",
