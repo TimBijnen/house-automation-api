@@ -14,9 +14,10 @@ class Pin {
     }
 
     activate( activate ) {
-        const value = activate && !this.inverted ? 1 : 0;
+        let value = activate ? 1 : 0;
+        value = this.inverted ? (value + 1) %2 : value;
         this.gpio && this.gpio.writeSync( value );
-        console.log( `activating pin ${ this.number }: ${ this.name }`);
+        console.log( `setting ${value} pin ${ this.number }: ${ this.name }`);
         this.isActive = activate;
     }
 }
