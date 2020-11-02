@@ -1,7 +1,6 @@
 const express = require("express")
 const app = express()
 const appPort = 3001;
-const socketPort = 3002;
 const rpiRoutes = require("./routes/rpi");
 const Rpi = require("./models/RaspberryPi");
 const bodyParser = require("body-parser");
@@ -9,7 +8,7 @@ const cors = require('cors')
 const pins = require("../config/pins");
 
 const corsOptions = {
-    origin: process.env.ORIGIN,
+    origin: "*",
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
@@ -20,9 +19,6 @@ app.use(bodyParser.json())
 app.use("/", rpiRoutes);
 app.locals.rpi = new Rpi({ pins });
 
-const server = require("./socket")(app);
 app.listen(appPort, () => console.log(`Example app listening on port ${appPort}!`))
-server.listen(socketPort, () => console.log(`Example app listening on port ${socketPort}!`))
-
 
 module.exports = app;

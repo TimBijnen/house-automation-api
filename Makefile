@@ -4,10 +4,10 @@ run:
 	npm run dev
 
 start:
-	npm start
+	docker run --publish 3001:3001 --detach --name api api
 
-test:
-	npm run test
+build:
+	docker build -t api .
 
-attach:
-	tmux a -t api
+clean:
+	docker rm --force api

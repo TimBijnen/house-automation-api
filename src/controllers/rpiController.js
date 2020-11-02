@@ -13,9 +13,9 @@ class RpiController {
         const { body } = req;
         const rpi = req.app.locals.rpi;
         rpi.activate( "ALL", body.isActive);
-        if ( req.body.notifyClients ) {
-            updateClient( req );
-        }
+        // if ( req.body.notifyClients ) {
+        //     updateClient( req );
+        // }
         return res.status(200).json({
             data: rpi,
             message: "set status of multiple pins",
