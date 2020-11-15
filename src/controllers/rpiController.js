@@ -13,9 +13,6 @@ class RpiController {
         const { body } = req;
         const rpi = req.app.locals.rpi;
         rpi.activate( "ALL", body.isActive);
-        // if ( req.body.notifyClients ) {
-        //     updateClient( req );
-        // }
         return res.status(200).json({
             data: rpi,
             message: "set status of multiple pins",
@@ -36,7 +33,7 @@ class RpiController {
         const rpi = req.app.locals.rpi;
         rpi.activate(id, body.isActive);
         return res.status(200).json({
-            data: { pins: rpi.pins },
+            data: rpi,
             message: "Success",
         });
     }
