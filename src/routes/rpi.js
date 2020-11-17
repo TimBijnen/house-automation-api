@@ -5,7 +5,7 @@ routes.get('/rpi', RpiController.getStatus);
 routes.post('/rpi', RpiController.setStatus);
 routes.post('/rpi/activate', RpiController.activateAll);
 routes.post('/rpi/deactivate', RpiController.deactivateAll);
-routes.get('/rpi/:id', RpiController.getSingleStatus);
-routes.post('/rpi/:id', RpiController.setSingleStatus);
+routes.get('/rpi/:id([0-9]+)', RpiController.getSingleStatus);
+routes.post('/rpi/:id([0-9]+)', RpiController.setSingleStatus);
 
 module.exports = routes;
