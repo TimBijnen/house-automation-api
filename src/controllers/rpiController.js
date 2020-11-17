@@ -42,12 +42,12 @@ class RpiController {
     static activateAll(req, res) {
         const { rpi } = req.app.locals;
         rpi.activate( "ALL", true);
-        return res.status(200);
+        return res.status(200).send();
     }
     static deactivateAll(req, res) {
         const { rpi } = req.app.locals;
         rpi.activate( "ALL", false);
-        return res.status(200);
+        return res.status(200).send();
     }
 }
 module.exports = RpiController;
