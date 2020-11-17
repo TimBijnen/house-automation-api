@@ -37,5 +37,17 @@ class RpiController {
             message: "Success",
         });
     }
+
+
+    static activateAll(req, res) {
+        const { rpi } = req.app.locals;
+        rpi.activate( "ALL", true);
+        return res.status(200);
+    }
+    static deactivateAll(req, res) {
+        const { rpi } = req.app.locals;
+        rpi.activate( "ALL", false);
+        return res.status(200);
+    }
 }
 module.exports = RpiController;
